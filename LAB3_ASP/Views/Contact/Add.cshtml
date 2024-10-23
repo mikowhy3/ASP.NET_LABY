@@ -1,0 +1,42 @@
+﻿@model LAB3_SIWON.Models.ContactModel
+
+
+
+<h2>Dodaj kontakt</h2>
+
+
+<form asp-action="Add" method="post">
+
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="First_Name">Imię</label>
+		<input class="form-control" asp-for="First_Name"  />"
+		<span class="text-danger" asp-validation-for="First_Name"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label" asp-for="Last_Name">Nazwisko</label>
+		<input class="form-control" asp-for="Last_Name" />"
+		<span class="text-danger" asp-validation-for="Last_Name"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="Email">Mail</label>
+		<input class="form-control" asp-for="Email" />"
+		<span class="text-danger" asp-validation-for="Email"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="PhoneNumber">Nr tel</label>
+		<input class="form-control" asp-for="PhoneNumber" />"
+		<span class="text-danger" asp-validation-for="PhoneNumber"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="BirthDate">Data ur</label>
+		<input class="form-control" asp-for="BirthDate" />"
+		<span class="text-danger" asp-validation-for="BirthDate"></span>
+	</div>
+	<button type="submit" class="btn btn-outline-primary">Dodaj</button>
+
+	<button type="reset" class="btn btn-outline-danger">Wyczysc</button>
+
+
+</form>
