@@ -1,3 +1,6 @@
+using LAB3_SIWON.Models;
+using LAB3_SIWON.Models.Services;
+
 namespace LAB3_SIWON
 {
     public class Program
@@ -8,6 +11,32 @@ namespace LAB3_SIWON
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // SKOJARZENIE MEMORYCONTACTSERVICE Z INTERFEJSEM, TWORZENIE JEDNEJ INSTANCJI
+            // dopytac chatu co to robi
+            // implementacja podstawiana w icontactserive 
+            // teraz kontroler musi z tego skorzystac wiec musimy wskazac mu aby mogl z tego
+            // czerpac
+            // kontener to obiekt ktory za nas tworzy instancje klas, dostarcza
+            // instancje tam gdzie jest potrzebna, zarzadza nimi
+            // taki dzial zatrudniania pracownikow 
+
+
+            // obiekt typu IContactService ma dostep do wszystkich metod MemoryContactService
+
+            /*
+             * U¿ycie AddSingleton w builder.Services.AddSingleton<IContactService,
+             * MemoryContactService>() zapewnia, ¿e tylko jedna instancja MemoryContactService 
+             * istnieje przez ca³y czas dzia³ania aplikacji.
+             */
+            // tworzy singleton ale inaczej niz klasyczny wzorzec
+            //builder.Services.AddSingleton<IContactService,MemoryContactService>();
+
+
+
+            // ZMIENIAMY TERAZ IMPLEMENTACJE
+            builder.Services.AddDbContext<AppDbContext>();
+            builder.Services.AddTransient<IContactService, EFContactService>();
 
             var app = builder.Build();
 
