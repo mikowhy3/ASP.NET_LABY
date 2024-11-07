@@ -6,6 +6,7 @@ namespace LAB4_ASP_SIWON.Models
     {
         // nazwa w formularzu stalej, daje tez mozliwosc ustalenia kolejnosci
         // nad kazda wlasnoscia dajemy nazwe
+        // oraz order id
         [Display(Name = "Rodzina", Order = 1)]
         Family,
         [Display(Name = "Znajomi", Order = 2)]
