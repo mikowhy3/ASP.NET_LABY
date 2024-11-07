@@ -1,0 +1,96 @@
+﻿<!--model System.Collections.Generic.Dictionary<int,LAB3_SIWON.Models.ContactModel>-->
+@model System.Collections.Generic.List<LAB4_ASP_SIWON.Models.ContactModel>
+
+
+
+<!-- WIDOKI CZERPIA INFORMACJE TYLKO Z MODELU
+
+KONTROLER NIEZALEZNY OD WARSTWY BIZNESOWEJ, NIE WIE JAK DANE SA PRECHOWYWANE
+GDZIE, NIE INTERESUJE GO TO
+-->
+<!-- model List<ContactModel></ContactModel>-->
+<!--Ten zapis informuje widok (plik .cshtml), że spodziewa się otrzymania modelu
+    , który jest słownikiem (Dictionary),
+
+gdzie klucz jest typu int, a wartość jest obiektem typu ContactModel.-->
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+
+<h2>Kontakty</h2>
+<a class="btn btn-primary" asp-action="Add" asp-controller="Contact">Dodaj kontakt</a>
+<h4 class="mb-3">Lista Kontaktów</h4>
+@if (Model.Count > 0)
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>
+                    <!--wprowadzanie etykiet display
+                        te metody oparte sa o lambdy
+                        trzeba wskazac o jaka klase i jakie property chodzi,
+                        domyslnie model bo uzywamy model dictionary
+                    -->
+                    @Html.DisplayNameFor(d => d[0].First_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(d => d[0].Last_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(d => d[0].Category)
+                </th>
+                <th class="text-end">Operacje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Liczba kontaktów w Model może się różnić –
+             czasami może być 10 kontaktów, innym razem 100 lub 0.
+             Dzięki pętli foreach możesz automatycznie wygenerować wiersze
+              tabeli dla każdego kontaktu bez konieczności pisania tego ręcznie.-->
+            <!--@Model to właśnie ten model (contacts), który przekazałeś z kontrolera.
+
+            Widok iteruje po każdym elemencie słownika przy użyciu foreach.-->
+            @foreach (var entry in @Model)
+            {
+                <tr>
+                    <td>
+                        <!-- usuwamy value bo nie korzystamy juz z slownika tylko z listy!-->
+                        @entry.First_Name
+                    </td>
+                    <td>
+                        @entry.Last_Name
+                    </td>
+                    <td>
+                        <!--Wywolujemy tutaj metode GetDisplayName z EnumExtensions
+                            dodawana do kazdego typu wyliczeniowego
+                        -->
+                        @entry.Category.GetDisplayName()
+
+                    </td>
+                    <td>
+                        <!-- gdyby sie cos rozjechalo to dodac
+                            <div class="float-end">
+                        -->
+                        <!-- usuwamy key bo nie korzystamy juz z slownika tylko z listy!
+                            ZAMIENIAMY NA ID
+                        -->
+                        <a class="btn btn-success" asp-action="Edit" asp-controller="Contact" asp-route-id="@entry.Id">Edycja</a>
+                        <a class="btn btn-info" asp-action="Details" asp-controller="Contact" asp-route-id=@entry.Id>Szczegóły</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-controller="Contact" asp-route-id=@entry.Id>Usuń</a>
+                    </td>
+
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>Nie masz jeszcze kontaktow </h2>
+}
