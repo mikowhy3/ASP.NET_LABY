@@ -43,6 +43,11 @@
 		<input class="form-control" asp-for="BirthDate" />
 		<span class="text-danger" asp-validation-for="BirthDate"></span>
 	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="OrganizationId"></label>
+		<select class="form-select" asp-for="OrganizationId" asp-items="@Model.Organizations"></select>
+		<span class="text-danger" asp-validation-for="OrganizationId"></span>
+	</div>
 
 	<!-- cos nowego ogarnac co to-->
 	<div class="mb-3">

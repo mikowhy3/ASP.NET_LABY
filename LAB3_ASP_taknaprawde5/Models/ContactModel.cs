@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LAB3_SIWON.Models
 {
@@ -47,6 +49,15 @@ namespace LAB3_SIWON.Models
 
         [Display(Name = "Kategoria")]
         public Category Category { get; set; }
+
+        [HiddenInput]
+        public int OrganizationId { get; set; }
+
+        [Display(Name ="Organizacja")]
+        public OrganizationEntity? Organization { get; set; }
+
+        [ValidateNever]
+        public List<SelectListItem> Organizations { get; set; }
 
     }
 }

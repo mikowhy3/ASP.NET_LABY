@@ -51,6 +51,9 @@ gdzie klucz jest typu int, a wartość jest obiektem typu ContactModel.-->
                 <th>
                     @Html.DisplayNameFor(d => d[0].Category)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(d => d[0].Organization)
+                </th>
                 <th class="text-end">Operacje</th>
             </tr>
         </thead>
@@ -80,6 +83,9 @@ gdzie klucz jest typu int, a wartość jest obiektem typu ContactModel.-->
                         -->
                         @entry.Category.GetDisplayName()
 
+                    </td>
+                    <td>
+                        @(entry.Organization?.Name??"brak operacji")
                     </td>
                     <td>
                         <!-- gdyby sie cos rozjechalo to dodac

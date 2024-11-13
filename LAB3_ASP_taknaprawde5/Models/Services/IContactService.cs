@@ -17,7 +17,9 @@
         // wyswietlenie jednego kontaktu na podstawie id
         ContactModel? GetById(int id);
 
+        // metoda zwracajaca wszystkie organizacje
 
+        List<OrganizationEntity> GetAllOrganizaios();
 
     }
 }

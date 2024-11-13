@@ -1,6 +1,7 @@
 ﻿using LAB3_SIWON.Models;
 using LAB3_SIWON.Models.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 namespace LAB3_SIWON.Controllers
 {
@@ -105,8 +106,21 @@ namespace LAB3_SIWON.Controllers
         public IActionResult Add()
         {
 
+            var model = new ContactModel();
+            model.Organizations = _contactService.GetAllOrganizaios()
+                .Select(e => new SelectListItem
+                {
+                    Value = e.Id.ToString(),
+                    Text = e.Name,
+                    Selected = e.Id == model.Id // Upewnij się, że model.Id jest odpowiednią wartością do porównania
+                })
+                .ToList();
+
+
+           
+            
             // wyswietlenie formularza add
-            return View();
+            return View(model);
         }
 
         // odebranie danyc z formularza, zapis kontaktu i powrot do listy kontaktow

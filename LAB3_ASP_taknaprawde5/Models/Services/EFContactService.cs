@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace LAB3_SIWON.Models.Services
 {
     public class EFContactService : IContactService
@@ -27,14 +29,21 @@ namespace LAB3_SIWON.Models.Services
         public List<ContactModel> GetAll()
         {
             return _context.Contacts
+                .Include(e=>e.Organization)
                 .Select(e => ContactMapper.FromEntity(e))
                 .ToList();
 
         }
 
+        public List<OrganizationEntity> GetAllOrganizaios()
+        {
+            return _context.Organizations.ToList();
+        }
+
         public ContactModel? GetById(int id)
         {
-            var entity=_context.Contacts.Find(id);
+            var entity=_context.Contacts.Include(c=>c.Organization).FirstOrDefault(c=>c.Id==id)
+                ;
             return entity != null ? ContactMapper.FromEntity(entity) : null;
         }
 

@@ -72,6 +72,11 @@ namespace LAB3_SIWON.Models.Services
             return contacts.Values.ToList();
         }
 
+        public List<OrganizationEntity> GetAllOrganizaios()
+        {
+            throw new NotImplementedException();
+        }
+
         public ContactModel? GetById(int id)
         {
             return contacts[id];

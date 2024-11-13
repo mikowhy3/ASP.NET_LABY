@@ -15,7 +15,10 @@ namespace LAB3_SIWON.Models
                 BirthDate = arg.BirthDate,
                 Email = arg.Email,
                 PhoneNumber = arg.PhoneNumber,
-                Category = arg.Category
+                Category = arg.Category,
+
+                Organization=arg.Organization,
+                OrganizationId=arg.OrganizationId
 
             };
 
@@ -33,7 +36,9 @@ namespace LAB3_SIWON.Models
                 BirthDate = arg.BirthDate,
                 Email = arg.Email,
                 PhoneNumber = arg.PhoneNumber,
-                Category = arg.Category
+                Category = arg.Category,
+                Organization = arg.Organization,
+                OrganizationId = (int)arg.OrganizationId
             };
 
         }
